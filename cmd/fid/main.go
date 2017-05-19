@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	fid "github.com/0x75960/fid/lib"
+	fid "github.com/0x75960/fid"
 )
 
 var targetPath string
