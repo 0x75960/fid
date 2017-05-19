@@ -5,25 +5,39 @@ import (
 	"log"
 	"os"
 
-	fid "github.com/0x75960/fid"
+	"github.com/0x75960/fid"
+	unqfy "github.com/0x75960/unqfy/lib"
 )
 
-var targetPath string
+var targetDir string
 
 func init() {
 	if len(os.Args) != 2 {
-		fmt.Printf("\nusage:\n\t %s <target path>\n\n", os.Args[0])
+		fmt.Printf("\nusage:\n\t %s <target dir path>\n\n", os.Args[0])
 		os.Exit(-1)
 	}
 
-	targetPath = os.Args[1]
+	targetDir = os.Args[1]
 }
 
 func main() {
-	fid, err := fid.NewFileIdentifer(targetPath)
+
+	all, err := unqfy.Listup(targetDir)
 	if err != nil {
 		log.Fatalln(err)
 	}
 
-	fmt.Println(fid.MarkdownTable())
+	fmt.Printf(fid.MarkdownTableTitle())
+
+	for _, file := range all {
+
+		id, err := fid.NewFileIdentifer(file)
+		if err != nil {
+			log.Fatalln(err)
+		}
+
+		fmt.Printf(id.MarkdownTableRow())
+
+	}
+
 }
