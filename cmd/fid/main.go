@@ -31,7 +31,7 @@ func main() {
 
 	for _, file := range all {
 
-		id, err := fid.NewFileIdentifer(file)
+		id, err := fid.NewFileIdentifier(file)
 		if err != nil {
 			log.Fatalln(err)
 		}

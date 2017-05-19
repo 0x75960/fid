@@ -10,16 +10,16 @@ import (
 	"path/filepath"
 )
 
-// FileIdentifer records Sha1, Sha256, Md5
-type FileIdentifer struct {
+// FileIdentifier records Sha1, Sha256, Md5
+type FileIdentifier struct {
 	Path   string
 	Sha1   string
 	Sha256 string
 	Md5    string
 }
 
-// NewFileIdentifer from path
-func NewFileIdentifer(p string) (fid *FileIdentifer, err error) {
+// NewFileIdentifier from path
+func NewFileIdentifier(p string) (fid *FileIdentifier, err error) {
 
 	sha1er := sha1.New()
 	sha256er := sha256.New()
@@ -43,7 +43,7 @@ func NewFileIdentifer(p string) (fid *FileIdentifer, err error) {
 		return nil, err
 	}
 
-	return &FileIdentifer{
+	return &FileIdentifier{
 		Path:   abs,
 		Sha1:   hex.EncodeToString(sha1er.Sum(nil)),
 		Sha256: hex.EncodeToString(sha256er.Sum(nil)),
